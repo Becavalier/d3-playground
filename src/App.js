@@ -1,40 +1,48 @@
 import './App.css'
-import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom"
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom"
 import Selection from './screens/selection'
 import DataJoin from './screens/data-join'
 import Scale from './screens/scale'
 import Shapes from './screens/shapes'
 import { useMemo } from 'react'
 
-const menu = [
+const childMenus = [
   {
-    path: '/',
-    element: <Navigate to="/selection" replace={true} />
-  },
-  {
-    path: "/selection",
+    path: "selection",
     element: <Selection />,
   },
   {
-    path: "/data-join",
+    path: "data-join",
     element: <DataJoin />,
   },
   {
-    path: "/scale",
+    path: "scale",
     element: <Scale />,
   },
   {
-    path: "/shapes",
+    path: "shapes",
     element: <Shapes />,
   },
 ]
+const Root = (props) => {
+  return <p>Please select the menu from the left-hand side. <Outlet/></p>
+}
+const menu = [
+  {
+    path: '/',
+    element: <Root />,
+    children: childMenus
+  },
+]
 
-const router = createBrowserRouter(menu)
+const router = createBrowserRouter(menu, {
+  basename: "/d3-playground",
+})
 
 const App = () => {
   const navigator = useMemo(() => {
-    return menu.map(i => {
-      return (<li key={i.path}><a href={i.path}>{i.path.slice(1)}</a></li>)
+    return childMenus.map(i => {
+      return (<li key={i.path}><a href={i.path}>{i.path}</a></li>)
     })
   }, [])
 
