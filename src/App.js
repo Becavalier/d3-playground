@@ -1,12 +1,16 @@
-import './App.css';
-import { createBrowserRouter, RouterProvider, } from "react-router-dom";
+import './App.css'
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom"
 import Selection from './screens/selection'
 import DataJoin from './screens/data-join'
 import Scale from './screens/scale'
 import Shapes from './screens/shapes'
-import { useMemo } from 'react';
+import { useMemo } from 'react'
 
 const menu = [
+  {
+    path: '/',
+    element: <Navigate to="/selection" replace={true} />
+  },
   {
     path: "/selection",
     element: <Selection />,
@@ -25,7 +29,7 @@ const menu = [
   },
 ]
 
-const router = createBrowserRouter(menu);
+const router = createBrowserRouter(menu)
 
 const App = () => {
   const navigator = useMemo(() => {
@@ -39,7 +43,7 @@ const App = () => {
       <ul>{navigator}</ul>
       <RouterProvider router={router} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
