@@ -1,5 +1,5 @@
 import './App.css'
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom"
+import { createHashRouter, RouterProvider, Outlet, Link } from "react-router-dom"
 import Selection from './screens/selection'
 import DataJoin from './screens/data-join'
 import Scale from './screens/scale'
@@ -24,9 +24,17 @@ const childMenus = [
     element: <Shapes />,
   },
 ]
-const Root = (props) => {
-  return <p>Please select the menu from the left-hand side. <Outlet/></p>
-}
+const Root = () => {
+  const navigator = useMemo(() => {
+    return childMenus.map(i => {
+      return (<li key={i.path}><Link to={i.path}>/{i.path}</Link></li>)
+    })
+  }, [])
+  return (<>
+    <ul>{navigator}</ul>
+    <p>Please select the menu from the left-hand side. <Outlet/></p>
+  </>)
+  }
 const menu = [
   {
     path: '/',
@@ -35,20 +43,11 @@ const menu = [
   },
 ]
 
-const router = createBrowserRouter(menu, {
-  basename: "/d3-playground",
-})
+const router = createHashRouter(menu)
 
 const App = () => {
-  const navigator = useMemo(() => {
-    return childMenus.map(i => {
-      return (<li key={i.path}><a href={i.path}>{i.path}</a></li>)
-    })
-  }, [])
-
   return (
     <div className="App">
-      <ul>{navigator}</ul>
       <RouterProvider router={router} />
     </div>
   )
