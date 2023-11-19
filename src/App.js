@@ -4,6 +4,8 @@ import Selection from './screens/selection'
 import DataJoin from './screens/data-join'
 import Scale from './screens/scale'
 import Shapes from './screens/shapes'
+import Axes from './screens/axes'
+import Hierarchies from './screens/hierarchies'
 import { useMemo } from 'react'
 
 const childMenus = [
@@ -23,6 +25,14 @@ const childMenus = [
     path: "shapes",
     element: <Shapes />,
   },
+  {
+    path: "axes",
+    element: <Axes />,
+  },
+  {
+    path: "hierarchies",
+    element: <Hierarchies />,
+  }
 ]
 const Root = () => {
   const navigator = useMemo(() => {
@@ -32,7 +42,7 @@ const Root = () => {
   }, [])
   return (<>
     <ul>{navigator}</ul>
-    <p>Please select the menu from the left-hand side. <Outlet/></p>
+    <div><h2>Please select an item from the left-hand side menu. </h2><Outlet/></div>
   </>)
   }
 const menu = [
