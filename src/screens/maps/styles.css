@@ -1,0 +1,79 @@
+div.selection {
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
+.section-3 div.menu {
+  position: absolute;
+  top: 40px;
+  left: 30px;
+}
+
+.section-3 div.menu .item {
+  margin-bottom: 12px;
+}
+
+.section-3 div.menu .item input {
+  width: 100px;
+}
+
+.section-3 div.menu select {
+  margin-top: 4px;
+}
+
+.section-3 div.menu .item .value {
+  font-weight: bold;
+}
+
+.section-3 div.menu .item span, .section-3 div.menu .item input {
+  vertical-align: middle;
+}
+
+.section-3 div.menu .item .low {
+  display: inline-block;
+  width: 30px;
+  text-align: right;
+}
+
+.section-3 .map path {
+  fill: #87B687;
+  stroke: #777;
+}
+
+.section-3 .projection-center {
+  fill: red;
+}
+
+.section-3 .graticule path {
+  fill: none;
+  stroke: #eee;
+}
+
+.section-3 .circles path {
+  fill: none;
+  stroke: #aaa;
+}
+
+.section-6 .info {
+  height: 20px;
+}
+
+.section-6 .map path {
+  fill: #aaa;
+  stroke: #fff;
+}
+
+.section-6 .bounding-box rect {
+  fill: none;
+  stroke: #333;
+  stroke-dasharray: 2,1;
+}
+
+.section-6 .centroid {
+  display: none;
+}
+
+.section-6 .centroid circle {
+  fill: red;
+}

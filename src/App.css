@@ -9,7 +9,7 @@
   border-right: solid 1px;
   list-style: none;
   font-size: 18px;
-  width: 150px;
+  width: 200px;
 }
 
 .App > div {
@@ -74,6 +74,7 @@ div[class^='section-'] {
   border: dotted 3px;
   margin: 10px;
   padding: 20px;
+  overflow-x: scroll;
 }
 
 div[class^='section-'] > p {
@@ -89,3 +90,10 @@ div[class^='section-'] > fieldset {
   text-align: left;
   margin-top: 10px;
 }
+
+div[class^='section-'] > div {
+  z-index: 1;
+  position: relative;
+}
+
+

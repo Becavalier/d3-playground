@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/d3-playground/static/css/main.c4243abf.css",
-    "main.js": "/d3-playground/static/js/main.1f30e163.js",
+    "main.css": "/d3-playground/static/css/main.6052e73f.css",
+    "main.js": "/d3-playground/static/js/main.0157408c.js",
     "static/js/787.f9e3aaa1.chunk.js": "/d3-playground/static/js/787.f9e3aaa1.chunk.js",
     "index.html": "/d3-playground/index.html",
-    "main.c4243abf.css.map": "/d3-playground/static/css/main.c4243abf.css.map",
-    "main.1f30e163.js.map": "/d3-playground/static/js/main.1f30e163.js.map",
+    "main.6052e73f.css.map": "/d3-playground/static/css/main.6052e73f.css.map",
+    "main.0157408c.js.map": "/d3-playground/static/js/main.0157408c.js.map",
     "787.f9e3aaa1.chunk.js.map": "/d3-playground/static/js/787.f9e3aaa1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c4243abf.css",
-    "static/js/main.1f30e163.js"
+    "static/css/main.6052e73f.css",
+    "static/js/main.0157408c.js"
   ]
 }

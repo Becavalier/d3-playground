@@ -8,7 +8,9 @@ import {
   tree,
   cluster,
   pack,
+  arc,
   treemap,
+  partition,
   treemapDice,
   treemapBinary,
   treemapSlice,
@@ -167,7 +169,7 @@ export default () => {
     }
 
     /**
-     * Section 2
+     * Section 3
      */
     {
       const root = hierarchy(structuralData)
@@ -214,7 +216,83 @@ export default () => {
         ][+evt.target.value])
       })
     }
-  
+
+    /**
+     * Section 4
+     */
+    {
+      const root = hierarchy(structuralData)
+      root.sum(d => d.value)
+      const packLayout = pack()  // All leaf nodes are placed at the same depth.
+      packLayout.size([300, 300])
+        .padding(10)  // The padding around each circle.
+      packLayout(root)
+      const nodes = select('.section-4 > svg > g')
+        .selectAll('g')
+        .data(root.descendants())
+        .join('g')
+        .style('stroke', 'white')
+        .style('fill', 'cadetblue')
+        .style('stroke', 'white')
+        .style('opacity', '0.3')
+        .attr('transform', d => 'translate(' + [d.x, d.y] + ')')
+      nodes.append('circle')
+        .attr('r', d => d.r)
+      nodes.append('text')
+        .attr('dy', 4)
+        .style('text-anchor', 'middle')
+        .text(d => d.children === undefined ? d.data.name : '')
+    }
+    
+    /**
+     * Section 5
+     */
+    {
+      const root = hierarchy(structuralData)
+      root.sum(d => d.value)
+      const partitionLayout = partition()  // All leaf nodes are placed at the same depth.
+      partitionLayout.size([400, 300])
+        .padding(2)  // The padding around each rect.
+      partitionLayout(root)
+      const nodes = select('.section-5 > svg > g')
+        .selectAll('g')
+        .data(root.descendants())
+        .join('rect')
+        .style('stroke', 'white')
+        .style('fill', 'cadetblue')
+        .style('stroke', 'white')
+        .style('opacity', '0.3')
+        .attr('x', d => d.x0)
+        .attr('y', d => d.y0)
+        .attr('width', d => d.x1 - d.x0)
+        .attr('height', d => d.y1 - d.y0)
+    }
+
+    /**
+     * Section 6
+     */
+    {
+      const root = hierarchy(structuralData)
+      root.sum(d => d.value)
+      const partitionLayout = partition()
+      partitionLayout.size([2 * Math.PI, 150])  // Projection.
+      var arcGenerator = arc()  // For drawing arc with given config.
+        .startAngle(d => d.x0)
+        .endAngle(d => d.x1)
+        .innerRadius(d => d.y0)
+        .outerRadius(d => d.y1)
+      partitionLayout(root)
+      select('.section-6 > svg > g')
+        .selectAll('path')
+        .data(root.descendants())
+        .join('path')
+        .style('stroke', 'white')
+        .style('fill', 'cadetblue')
+        .style('stroke', 'white')
+        .style('opacity', '0.3')
+        .attr('d', arcGenerator)
+    }
+
   }, [])
   
   return (
@@ -234,7 +312,7 @@ export default () => {
         </svg>
       </div>
       <div className="section-2">
-        <p>Section 2</p>
+        <p>Section 2 - Tree Layout</p>
         <svg 
           preserveAspectRatio="xMinYMax meet" 
           viewBox="0 0 760 340" 
@@ -248,7 +326,7 @@ export default () => {
         </svg>
       </div>
       <div className="section-3">
-        <p>Section 3</p>
+        <p>Section 3 - Cluster Layout</p>
         <svg 
           preserveAspectRatio="xMinYMax meet" 
           viewBox="0 0 760 340" 
@@ -281,6 +359,42 @@ export default () => {
             <label htmlFor="treemapSquarify"><b>treemapSquarify</b>: allows the aspect ratio of the rectangles to be influenced.</label>
           </div>
         </fieldset>
+      </div>
+      <div className="section-4">
+        <p>Section 4 - Pack Layout</p>
+        <svg 
+          preserveAspectRatio="xMinYMax meet" 
+          viewBox="0 0 760 360" 
+          width="760" 
+          height="360" 
+          xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(20, 50)">
+          </g>  
+        </svg>
+      </div>
+      <div className="section-5">
+        <p>Section 5 - Partition Layout</p>
+        <svg 
+          preserveAspectRatio="xMinYMax meet" 
+          viewBox="0 0 760 360" 
+          width="760" 
+          height="360" 
+          xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(20, 50)">
+          </g>  
+        </svg>
+      </div>
+      <div className="section-6">
+        <p>Section 6 - Sunburst Partition Layout</p>
+        <svg 
+          preserveAspectRatio="xMinYMax meet" 
+          viewBox="0 0 760 360" 
+          width="760" 
+          height="360" 
+          xmlns="http://www.w3.org/2000/svg">
+          <g transform="translate(160, 180)">
+          </g>  
+        </svg>
       </div>
     </div>
   )

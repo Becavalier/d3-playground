@@ -6,6 +6,12 @@ import Scale from './screens/scale'
 import Shapes from './screens/shapes'
 import Axes from './screens/axes'
 import Hierarchies from './screens/hierarchies'
+import Chord from './screens/chord'
+import ForceLayout from './screens/force-layout'
+import Maps from './screens/maps'
+import Transitions from './screens/transitions'
+import PickingDragingBrusing from './screens/picking-draging-brusing'
+import ZoomPan from './screens/zoom-pan'
 import { useMemo } from 'react'
 
 const childMenus = [
@@ -32,6 +38,30 @@ const childMenus = [
   {
     path: "hierarchies",
     element: <Hierarchies />,
+  },
+  {
+    path: 'chord',
+    element: <Chord />
+  },
+  {
+    path: 'force-layout',
+    element: <ForceLayout />
+  },
+  {
+    path: 'maps',
+    element: <Maps />
+  },
+  {
+    path: 'transitions',
+    element: <Transitions />
+  },
+  {
+    path: 'picking-draging-brusing',
+    element: <PickingDragingBrusing />
+  },
+  {
+    path: 'zoom-pan',
+    element: <ZoomPan />
   }
 ]
 const Root = () => {
