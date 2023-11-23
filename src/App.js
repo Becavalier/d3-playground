@@ -12,6 +12,7 @@ import Maps from './screens/maps'
 import Transitions from './screens/transitions'
 import PickingDragingBrusing from './screens/picking-draging-brusing'
 import ZoomPan from './screens/zoom-pan'
+import Others from './screens/others'
 import { useMemo } from 'react'
 
 const childMenus = [
@@ -62,6 +63,10 @@ const childMenus = [
   {
     path: 'zoom-pan',
     element: <ZoomPan />
+  },
+  {
+    path: 'others',
+    element: <Others />
   }
 ]
 const Root = () => {
