@@ -1,23 +1,6 @@
 import { useEffect } from "react"
 import { 
   select, 
-  selectAll, 
-  selection, 
-  scaleSqrt, 
-  scalePow, 
-  scaleLog, 
-  scaleTime,
-  scaleSequential,
-  scaleQuantize,
-  scaleQuantile,
-  scaleThreshold,
-  scaleOrdinal,
-  scaleBand,
-  scalePoint,
-  interpolateRainbow,
-  axisBottom,
-  extent,
-  pointer,
   scaleLinear,
   hierarchy,
 } from "d3";
@@ -114,7 +97,13 @@ export default () => {
       select('.section-1 > svg > g')
         .selectAll('rect')
         .data(validData)
-        .join('rect')
+        .join(
+          enter => enter
+            .append('rect')
+            .style('opacity', 0),
+          update => update,
+          exit => exit.remove()
+        )
         .style('stroke', d => {
           return visibleParents[d.depth] === d.data.name ? 'red' : 'white'
         })
@@ -124,12 +113,13 @@ export default () => {
           visibleParents = visibleParents.slice(0, d.depth + 1)
           update()
         })
-        .style('opacity', .8)
         .attr('x', d => d.depth * (barWidth + barHorizontalGap))
         .attr('y', d => d.level * (barHeight + barVerticalGap))
         .style('cursor', 'pointer')
         .attr('width', d => d.rectWidth)
         .attr('height', barHeight)
+        .transition()
+        .style('opacity', .8)
       
       select('.section-1 > svg > g')
         .selectAll('text')
