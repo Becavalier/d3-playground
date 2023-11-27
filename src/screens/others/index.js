@@ -96,7 +96,7 @@ export default () => {
       const validData = nodes.filter(d => d.parentName === 'root' || visibleParents[d.depth - 1] === d.parentName)
       select('.section-1 > svg > g')
         .selectAll('rect')
-        .data(validData)
+        .data(validData, d => d.data.name)
         .join(
           enter => enter
             .append('rect')
@@ -125,6 +125,7 @@ export default () => {
         .selectAll('text')
         .data(validData)
         .join('text')
+        .raise()
         .style('font-size', '20px')
         .text(d => `${d.data.name} - ${d.value}`)
         .attr('x', d => d.depth * (barWidth + barHorizontalGap))
