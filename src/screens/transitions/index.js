@@ -110,7 +110,7 @@ export default () => {
      * Section 3
      */
     {
-      const easing = [
+      const easing = {
         easeBack, 
         easeBackIn,
         easeBackInOut,
@@ -148,9 +148,9 @@ export default () => {
         easeSinIn,
         easeSinInOut,
         easeSinOut,
-      ]
+      }
       let side = 'left', data = 0
-      const joinedData = Array(easing.length)
+      const joinedData = Array(Object.keys(easing).length)
       select('.section-3 > svg > g')
         .selectAll('text')
         .data(joinedData)
@@ -158,7 +158,7 @@ export default () => {
         .attr('transform', 'rotate(-90)')
         .style('opacity', .4)
         .text((d, i) => {
-          return easing[i].toString().match(/function (?<name>[a-zA-Z]+)\(/)?.groups?.name ?? 'linear'
+          return Object.keys(easing)[i]
         })
         .attr('x', -230)
         .attr('y', (d, i) => i * 40)
@@ -174,7 +174,7 @@ export default () => {
               .attr('r', 15)
               .transition()
               .duration(800)
-              .ease(easing[i])
+              .ease(Object.values(easing)[i])
               .attr('cy', data)
           })
         side = side === 'left' ? 'right' : 'left'
